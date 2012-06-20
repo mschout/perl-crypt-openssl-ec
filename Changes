@@ -1,0 +1,12 @@
+Revision history for Perl extension Crypt::OpenSSL::EC.
+
+0.2   2012-06-20
+      First public release
+
+0.1   2012-06-20
+      Autodestruction, OO support added.
+
+0.01  Thu Jun 14 08:19:57 2012
+	- original version; created by h2xs 1.23 with options
+		-n Crypt::OpenSSL::EC /usr/include/openssl/ec.h -L /usr/lib -lcrypt
+
