@@ -375,7 +375,7 @@ our @EXPORT = qw(
 	POINT_CONVERSION_UNCOMPRESSED
 );
 
-our $VERSION = '0.2';
+our $VERSION = '0.3';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -1284,7 +1284,7 @@ OpenSSL
 
 =head1 AUTHOR
 
-Mike McCauley, E<lt>mikem@open.com.auE<gt>
+Mike McCauley, E<lt>mikem@airspayce.comE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 

@@ -13,7 +13,7 @@ WriteMakefile(
                           }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Crypt/OpenSSL/EC.pm', # retrieve abstract from module
-       AUTHOR         => 'Mike McCauley <mikem@open.com.au>') : ()),
+       AUTHOR         => 'Mike McCauley <mikem@airspayce.com>') : ()),
     LIBS              => ["-L$openssl_prefix/lib -lcrypto"], # e.g., '-lm'
     DEFINE            => '-DPERL5 -DOPENSSL_NO_KRB5',
     INC               => "-I. -I$openssl_prefix/include", 

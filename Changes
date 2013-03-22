@@ -1,5 +1,8 @@
 Revision history for Perl extension Crypt::OpenSSL::EC.
 
+0.3   2013-03-22
+      Updated author and distribution location details to airspayce.com
+
 0.2   2012-06-20
       First public release
 
