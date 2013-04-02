@@ -1,5 +1,9 @@
 Revision history for Perl extension Crypt::OpenSSL::EC.
 
+0.4   2013-04-02
+      Added MSWin32.pl to enable correct build on MS Windows platform (with both GCC and MSVC
+      compiler). Contributed by kmx.
+
 0.3   2013-03-22
       Updated author and distribution location details to airspayce.com
 
