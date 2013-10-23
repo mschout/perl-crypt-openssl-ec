@@ -375,7 +375,7 @@ our @EXPORT = qw(
 	POINT_CONVERSION_UNCOMPRESSED
 );
 
-our $VERSION = '0.4';
+our $VERSION = '0.5';
 
 sub AUTOLOAD {
     # This AUTOLOAD is used to 'autoload' constants from the constant()
@@ -524,6 +524,8 @@ Returns GFp methods using optimized methods for NIST recommended curves
 
 =item Crypt::OpenSSL::EC::EC_GF2m_simple_method();
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
 Returns the basic GF2m ec method 
 
 =item Crypt::OpenSSL::EC::EC_GROUP::new($method);
@@ -572,6 +574,9 @@ Gets the parameter of the ec over GFp defined by y^2 = x^3 + a*x + b
 
 =item Crypt::OpenSSL::EC::EC_GROUP::set_curve_GF2m($group, $p, $a, $b, $ctx);
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
+    
 Sets the parameter of a ec over GF2m defined by y^2 + x*y = x^3 + a*x^2 + b
   group  EC_GROUP object
   p      BIGNUM with the polynomial defining the underlying field
@@ -581,6 +586,8 @@ Sets the parameter of a ec over GF2m defined by y^2 + x*y = x^3 + a*x^2 + b
   return 1 on success and 0 if an error occured
 
 =item Crypt::OpenSSL::EC::EC_GROUP::get_curve_GF2m($group, $p, $a, $b, $ctx);
+
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
 
 Gets the parameter of the ec over GF2m defined by y^2 + x*y = x^3 + a*x^2 + b
   group  EC_GROUP object
@@ -679,6 +686,8 @@ Sets the x9.62 compressed coordinates of a EC_POINT over GFp
 
 =item Crypt::OpenSSL::EC::EC_POINT::set_affine_coordinates_GF2m($group, $p, $x, $y, $ctx);
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
 Sets the affine coordinates of a EC_POINT over GF2m
   group  underlying EC_GROUP object
   p      EC_POINT object
@@ -689,6 +698,8 @@ Sets the affine coordinates of a EC_POINT over GF2m
 
 =item Crypt::OpenSSL::EC::EC_POINT::get_affine_coordinates_GF2m($group, $p, $x, $y, $ctx);
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
 Gets the affine coordinates of a EC_POINT over GF2m
   group  underlying EC_GROUP object
   p      EC_POINT object
@@ -698,6 +709,8 @@ Gets the affine coordinates of a EC_POINT over GF2m
   return 1 on success and 0 if an error occured
 
 =item Crypt::OpenSSL::EC::EC_POINT::set_compressed_coordinates_GF2m($group, $p, $x, $y_bit, $ctx);
+
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
 
 Sets the x9.62 compressed coordinates of a EC_POINT over GF2m
   group  underlying EC_GROUP object
@@ -854,6 +867,8 @@ over GFp (defined by the equation y^2 = x^3 + a*x + b)
 
 =item Crypt::OpenSSL::EC::EC_GROUP::new_curve_GF2m($p, $a, $b, $ctx);
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
 Creates a new EC_GROUP object with the specified parameters defined
 over GF2m (defined by the equation y^2 + x*y = x^3 + a*x^2 + b)
   p    BIGNUM with the polynomial defining the underlying field
@@ -966,7 +981,11 @@ used to represent the field elements
 
 =item    Crypt::OpenSSL::EC::EC_GROUP::get_trinomial_basis($group, $k);
 
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
+
 =item    Crypt::OpenSSL::EC:: EC_GROUP::get_pentanomial_basis($group, $k1, $k2, $k3);
+
+Not available if OPENSSL_NO_EC2M is defined in OpenSSL.
 
 =item    Crypt::OpenSSL::EC::EC_GROUP::free($group);
 

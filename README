@@ -20,6 +20,12 @@ This module requires these other modules and libraries:
      Crypt::OpenSSL::Bignum 0.04 or later
      openssl-devel 0.9.8i or later
 
+To build you will also need (but may already be installed on your OS):
+   make
+   gcc
+   ExtUtils::MakeMaker
+   Test::Simple
+
 COPYRIGHT AND LICENCE
 
 Put the correct copyright and licence information here.

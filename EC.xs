@@ -28,8 +28,12 @@ EC_GFp_mont_method()
 const EC_METHOD *
 EC_GFp_nist_method()
 
+#ifndef OPENSSL_NO_EC2M
+
 const EC_METHOD *
 EC_GF2m_simple_method()
+
+#endif
 
 #ifndef OPENSSL_NO_BIO
 int	
@@ -141,11 +145,15 @@ EC_GROUP_set_curve_GFp(EC_GROUP *group, const BIGNUM *p, const BIGNUM *a, const 
 int 
 EC_GROUP_get_curve_GFp(const EC_GROUP *group, BIGNUM *p, BIGNUM *a, BIGNUM *b, BN_CTX *ctx)
 
+#ifndef OPENSSL_NO_EC2M
+
 int 
 EC_GROUP_set_curve_GF2m(EC_GROUP *group, const BIGNUM *p, const BIGNUM *a, const BIGNUM *b, BN_CTX *ctx)
 
 int 
 EC_GROUP_get_curve_GF2m(const EC_GROUP *group, BIGNUM *p, BIGNUM *a, BIGNUM *b, BN_CTX *ctx)
+
+#endif
 
 int 
 EC_GROUP_get_degree(const EC_GROUP *group)
@@ -162,8 +170,12 @@ EC_GROUP_cmp(const EC_GROUP *a, const EC_GROUP *b, BN_CTX *ctx)
 EC_GROUP *
 EC_GROUP_new_curve_GFp(const BIGNUM *p, const BIGNUM *a, const BIGNUM *b, BN_CTX *ctx)
 
+#ifndef OPENSSL_NO_EC2M
+
 EC_GROUP *
 EC_GROUP_new_curve_GF2m(const BIGNUM *p, const BIGNUM *a, const BIGNUM *b, BN_CTX *ctx)
+
+#endif
 
 EC_GROUP *
 EC_GROUP_new_by_curve_name(int nid)
@@ -177,6 +189,8 @@ EC_GROUP_have_precompute_mult(const EC_GROUP *group)
 
 int 
 EC_GROUP_get_basis_type(const EC_GROUP *group)
+
+#ifndef OPENSSL_NO_EC2M
 
 int 
 EC_GROUP_get_trinomial_basis(const EC_GROUP *group, IN_OUT unsigned int k)
@@ -195,6 +209,8 @@ EC_GROUP_get_pentanomial_basis(const EC_GROUP *group, IN_OUT unsigned int k1, IN
 		k2 sv_setiv(ST(2), k2);
 		k3 sv_setiv(ST(3), k3);
 		RETVAL
+
+#endif
 
 #EC_GROUP *
 #d2i_ECPKParameters(EC_GROUP **group, const unsigned char **in, long len)
@@ -249,6 +265,8 @@ EC_POINT_get_affine_coordinates_GFp(const EC_GROUP *group, const EC_POINT *p, BI
 int 
 EC_POINT_set_compressed_coordinates_GFp(const EC_GROUP *group, EC_POINT *p, const BIGNUM *x, int y_bit, BN_CTX *ctx)
 
+#ifndef OPENSSL_NO_EC2M
+
 int 
 EC_POINT_set_affine_coordinates_GF2m(const EC_GROUP *group, EC_POINT *p, const BIGNUM *x, const BIGNUM *y, BN_CTX *ctx)
 
@@ -258,6 +276,7 @@ EC_POINT_get_affine_coordinates_GF2m(const EC_GROUP *group, const EC_POINT *p, B
 int 
 EC_POINT_set_compressed_coordinates_GF2m(const EC_GROUP *group, EC_POINT *p, const BIGNUM *x, int y_bit, BN_CTX *ctx)
 
+#endif
 
 SV *
 EC_POINT_point2oct(const EC_GROUP *group, const EC_POINT *p, point_conversion_form_t theform, BN_CTX *ctx)

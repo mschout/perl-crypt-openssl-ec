@@ -32,6 +32,7 @@ sub prime_field_tests()
     my $group = Crypt::OpenSSL::EC::EC_GROUP::new($method);
     ok($group);
 
+    # Caution: this fails on some OpenSSLs, eg on Fedora 13 where EC2M are not available
     ok($group->set_curve_GFp($p, $a, $b, $ctx));
 
     my $tmp = Crypt::OpenSSL::EC::EC_GROUP::new($group->method_of());
