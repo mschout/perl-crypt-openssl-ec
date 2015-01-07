@@ -1,5 +1,10 @@
 Revision history for Perl extension Crypt::OpenSSL::EC.
 
+0.6   2015-01-07
+      Fixed a problem due to the fact that EC_GROUP_get0_generator returned a
+      pointer to an internal object with a EC_GROUP. The point is now
+      duplicated. Reported by Dick Franks.
+
 0.5   2013-08-23
       Do not provide certain EC2M functions unless they are available in the
       underlying OpenSSL (ie if OPENSSL_NO_EC2M is not defined): 

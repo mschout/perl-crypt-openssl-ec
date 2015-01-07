@@ -78,7 +78,7 @@ EC_GROUP_new(const EC_METHOD *meth)
 
 void 
 EC_GROUP_DESTROY(EC_GROUP * group)
-    CODE:	
+    CODE:
 	EC_GROUP_free(group);
 
 void 
@@ -101,6 +101,10 @@ EC_GROUP_set_generator(EC_GROUP *group, const EC_POINT *generator, const BIGNUM 
 
 const EC_POINT *
 EC_GROUP_get0_generator(const EC_GROUP *group)
+    CODE:
+        RETVAL = EC_POINT_dup(EC_GROUP_get0_generator(group), group);
+    OUTPUT:
+        RETVAL
 
 int 
 EC_GROUP_get_order(const EC_GROUP *group, BIGNUM *order, BN_CTX *ctx)
