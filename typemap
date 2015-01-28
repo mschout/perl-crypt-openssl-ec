@@ -1,6 +1,6 @@
 TYPEMAP
-BIGNUM *		T_PTRREF
-const BIGNUM *		T_PTRREF
+BIGNUM *		BIGNUM
+const BIGNUM *		BIGNUM
 BN_CTX *		T_PTRREF
 const EC_METHOD *	EC_METHOD
 EC_GROUP *		EC_GROUP
@@ -14,6 +14,10 @@ point_conversion_form_t	T_ENUM
 const unsigned char *	T_PV
 
 INPUT
+BIGNUM
+    if( ! SvROK( $arg ) ) { croak( \"argument is not an object\" ); }
+    $var = (${type}) SvIV( SvRV( $arg ) );
+
 EC_METHOD
     if( ! SvROK( $arg ) ) { croak( \"argument is not an object\" ); }
     $var = (${type}) SvIV( SvRV( $arg ) );
@@ -36,6 +40,9 @@ EC_KEY
 # called when they go out of scope, for auto cleanup
 
 OUTPUT
+BIGNUM
+	sv_setsv($arg, sv_2mortal(sv_bless(newRV_noinc( newSViv( (IV)$var ) ), gv_stashpv("Crypt::OpenSSL::Bignum",1))));
+
 EC_METHOD
 	sv_setsv($arg, sv_2mortal(sv_bless(newRV_noinc( newSViv( (IV)$var ) ), gv_stashpv("Crypt::OpenSSL::EC::EC_METHOD",1))));
 
