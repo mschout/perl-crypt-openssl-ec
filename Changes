@@ -1,5 +1,11 @@
 Revision history for Perl extension Crypt::OpenSSL::EC.
 
+0.8   2015-01-28
+      Omitted Changes for 0.7
+
+0.7   2015-01-28
+      Fixed problem where BIGNUMs were not blessed
+
 0.6   2015-01-07
       Fixed a problem due to the fact that EC_GROUP_get0_generator returned a
       pointer to an internal object with a EC_GROUP. The point is now
