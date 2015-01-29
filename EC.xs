@@ -416,6 +416,10 @@ EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv)
 
 const EC_POINT *
 EC_KEY_get0_public_key(const EC_KEY *key)
+    CODE:
+        RETVAL = EC_POINT_dup(EC_KEY_get0_public_key(key), EC_KEY_get0_group(key));
+    OUTPUT:
+        RETVAL
 
 int 
 EC_KEY_set_public_key(EC_KEY *key, const EC_POINT *pub)

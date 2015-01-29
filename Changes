@@ -1,5 +1,10 @@
 Revision history for Perl extension Crypt::OpenSSL::EC.
 
+0.9   2015-01-29
+      Fixed a problem where EC_KEY_get0_public_key did not duplicate the
+      returned EC_POINT, potentially causing a double free of the point and
+      subsequent crash. Reported by Dick Franks.
+
 0.8   2015-01-28
       Omitted Changes for 0.7
 
