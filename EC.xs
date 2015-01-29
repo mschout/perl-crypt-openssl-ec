@@ -410,6 +410,10 @@ EC_KEY_set_group(EC_KEY *key, const EC_GROUP *group)
 
 const BIGNUM *
 EC_KEY_get0_private_key(const EC_KEY *key)
+    CODE:
+        RETVAL = BN_dup(EC_KEY_get0_private_key(key));
+    OUTPUT:
+        RETVAL
 
 int 
 EC_KEY_set_private_key(EC_KEY *key, const BIGNUM *prv)

@@ -8,9 +8,8 @@
 use strict;
 use warnings;
 
-use Test::More tests => 9;
-BEGIN { use_ok('Crypt::OpenSSL::EC') };
-
+use Test::More tests => 19;
+BEGIN { use_ok('Crypt::OpenSSL::EC'); use_ok('Crypt::OpenSSL::Bignum') };
 
 my $fail = 0;
 foreach my $constname (qw(
@@ -136,3 +135,30 @@ my $key = Crypt::OpenSSL::EC::EC_KEY::new();
 ok($key);
 $key = Crypt::OpenSSL::EC::EC_KEY::new();
 ok($key);
+
+my $bignum = $key->get0_private_key();
+ok($bignum);
+
+$group = $key->get0_group();
+ok($group);
+
+$point = $key->get0_public_key();
+ok($point);
+
+my $nid   = 415;        # NID_X9_62_prime256v1
+$group = Crypt::OpenSSL::EC::EC_GROUP::new_by_curve_name($nid);
+my $ctx   = Crypt::OpenSSL::Bignum::CTX->new();
+my $order = Crypt::OpenSSL::Bignum->zero;
+$group->get_order( $order, $ctx );
+my $eckey = Crypt::OpenSSL::EC::EC_KEY::new();
+ok($eckey);
+ok($eckey->set_group($group));
+ok($eckey->generate_key());
+$bignum = $eckey->get0_private_key();
+ok($bignum);
+#print '$bignum ', $bignum, "\n";
+my $binary = $bignum->to_bin;
+ok($binary);
+my $K = $eckey->get0_public_key();
+ok($K);
+#print '$K: ', $K, "\n";
