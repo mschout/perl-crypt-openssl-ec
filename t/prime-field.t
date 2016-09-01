@@ -7,7 +7,34 @@ use Crypt::OpenSSL::Bignum::CTX;
 
 BEGIN { use_ok('Crypt::OpenSSL::EC') };
 
-&prime_field_tests();
+
+# Check OpenSSL supports EC2M
+my $no_ec2m = 1;
+{
+    use File::Spec;
+    use File::Temp;
+    use ExtUtils::CBuilder;
+    my $dir = File::Temp::tempdir(CLEANUP => 1);
+    my $file = File::Spec->catfile($dir, 'test.c');
+    open my $fh, '>', $file or die;
+    print $fh <<TEST;
+#include <openssl/opensslconf.h>
+#ifdef OPENSSL_NO_EC2M
+#error EC2M disabled
+#endif
+TEST
+    close $fh or die;
+    my $object;
+    eval { $object = ExtUtils::CBuilder->new->compile(source => $file) };
+    if (defined $object) {
+        $no_ec2m = 0;
+    }
+}
+
+SKIP: {
+    skip('OpenSSL does not support EC2M', 262) if $no_ec2m;
+    &prime_field_tests();
+};
 
 sub prime_field_tests()
 {

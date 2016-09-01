@@ -10,6 +10,9 @@ WriteMakefile(
     NAME              => 'Crypt::OpenSSL::EC',
     VERSION_FROM      => 'lib/Crypt/OpenSSL/EC.pm',
     PREREQ_PM         => { 'Crypt::OpenSSL::Bignum' => 0.04,
+                           'ExtUtils::CBuilder' => 0,
+                           'File::Spec' => 0,
+                           'File::Temp' => 0,
                           }, 
     ($] >= 5.005 ?     ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM  => 'lib/Crypt/OpenSSL/EC.pm', # retrieve abstract from module
